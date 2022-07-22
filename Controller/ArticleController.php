@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Model\ArticleModel;
-use App\Model\CategoryModel;
 
 require_once('Model/ArticleModel.php');
 

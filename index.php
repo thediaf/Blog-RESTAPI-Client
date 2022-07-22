@@ -1,8 +1,10 @@
 <?php
 
     require_once('Controller/ArticleController.php');
+    require_once('Controller/UserController.php');
 
     $run = new \App\Controller\ArticleController();
+    $userController = new \App\Controller\UserController();
     
     try {
         if(isset($_GET['action']))
@@ -15,6 +17,11 @@
             {
                 
                 $run->categoryArticles($_GET['id']);
+            }
+            elseif ($_GET['action'] == "login")
+            {
+                
+                $userController->login();
             }
         }
         else
