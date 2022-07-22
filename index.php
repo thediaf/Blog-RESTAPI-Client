@@ -23,6 +23,12 @@
                 
                 $userController->login();
             }
+
+            elseif ($_GET['action'] == "signup")
+            {
+                
+                $userController->signup();
+            }
         }
         else
             $run->home();
