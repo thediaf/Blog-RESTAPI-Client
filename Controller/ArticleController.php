@@ -2,64 +2,51 @@
 namespace App\Controller;
 
 use App\Model\ArticleModel;
+use App\Controller\ApiController;
 
 require_once('Model/ArticleModel.php');
+require_once('Controller/ApiController.php');
 
 class ArticleController 
 {
     protected $model;
-    protected $curl;
+    protected $request;
 
     public function __construct()
     {
-        $this->curl = curl_init();
+        $this->request = new ApiController();
         $this->model = new ArticleModel();
     }
 
     public function home()
     {
-        curl_setopt($this->curl, CURLOPT_URL, "http://localhost:8000/index.php");
-        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
         
-        $json = curl_exec($this->curl);
-        
-        curl_close($this->curl);
-        
-        $json = json_decode($json);
-        $articles = $json->articles;
-        $categories = $json->categories;
+        $response = $this->request->callAPI("http://localhost:8000/index.php");
+        $articles = $response->articles;
+        $categories = $response->categories;
 
         require('View/home.php');   
     }
 
     public function show($id)
     {
-        curl_setopt($this->curl, CURLOPT_URL, "http://localhost:8000/index.php?action=show&id=" . $id);
-        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+        $url = "http://localhost:8000/index.php?action=show&id=" . $id;
+        $response = $this->request->callAPI($url);
         
-        $json = curl_exec($this->curl);
+        $article = $response->article;
+        $categories = $response->categories;
         
-        curl_close($this->curl);
-        
-        $json = json_decode($json);
-        $article = $json->article;
-        $categories = $json->categories;
-        // var_dump($article);
         require('View/show.php');
     }
 
     public function categoryArticles($id)
     {
-        curl_setopt($this->curl, CURLOPT_URL, "http://localhost:8000/index.php?action=category&id=" . $id);
-        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+        $url = "http://localhost:8000/index.php?action=category&id=" . $id;
+        $response = $this->request->callAPI($url);
         
-        $json = curl_exec($this->curl);
+        $articles = $response->articles;
+        $categories = $response->categories;
         
-        curl_close($this->curl);
-        
-        $json = json_decode($json);
-        $articles = $json->articles;
-        $categories = $json->categories;
         require('View/home.php');
     }
 
