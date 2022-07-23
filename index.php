@@ -17,6 +17,10 @@
             {
                 $run->categoryArticles($_GET['id']);
             }
+            elseif ($_GET['action'] == "new")
+            {
+                $run->new();
+            }
             elseif ($_GET['action'] == "login")
             {
                 

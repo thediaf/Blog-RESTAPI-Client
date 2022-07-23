@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                         <?php  } ?>
-                       <li> <a href="../index.php?action=login" class="btn btn-info">Connexion</a></li>
+                       <li> <a href="../index.php?action=new" class="btn btn-info">Ajouter</a></li>
                     </ul>
                 </div>
             </nav>

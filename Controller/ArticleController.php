@@ -20,12 +20,38 @@ class ArticleController
 
     public function home()
     {
-        
         $response = $this->request->callAPI("http://localhost:8000/index.php");
         $articles = $response->articles;
         $categories = $response->categories;
 
-        require('View/home.php');   
+        require('View/home.php');  
+    }
+
+    public function new()
+    {
+        if ($_POST) {
+
+            
+            $url = 'http://localhost:8000/index.php';
+            $data = array('title' => 'test', 'content' => 'Tesr hjdhjdh djklmdjd');
+            // utilisez 'http' même si vous envoyez la requête sur https:// ...
+            $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data)
+            )
+            );
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            
+            /* Handle error */ 
+            $this->home();
+            
+        }
+        else {
+            require('View/new.php');
+        }
     }
 
     public function show($id)
