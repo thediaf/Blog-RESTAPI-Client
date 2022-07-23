@@ -34,8 +34,17 @@ class ArticleController
 
     public function show($id)
     {
-        $article = $this->model->getArticle($id);
-        $categories = $this->model->getCategories();
+        curl_setopt($this->curl, CURLOPT_URL, "http://localhost:8000/index.php?action=show&id=" . $id);
+        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $json = curl_exec($this->curl);
+        
+        curl_close($this->curl);
+        
+        $json = json_decode($json);
+        $article = $json->article;
+        $categories = $json->categories;
+        // var_dump($article);
         require('View/show.php');
     }
 
