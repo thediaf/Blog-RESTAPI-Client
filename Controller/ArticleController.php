@@ -8,22 +8,28 @@ require_once('Model/ArticleModel.php');
 class ArticleController 
 {
     protected $model;
+    protected $curl;
+
     public function __construct()
     {
+        $this->curl = curl_init();
         $this->model = new ArticleModel();
     }
 
     public function home()
     {
-        $articles = $this->model->getArticles();
-        $categories = $this->model->getCategories();
-        // $categories = new CategoryModel();
-        // var_dump($categories);
-        // echo "test";
-        if ($articles) {
-            require('View/home.php');   
-            # code...
-        }
+        curl_setopt($this->curl, CURLOPT_URL, "http://localhost:8000/index.php");
+        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $json = curl_exec($this->curl);
+        
+        curl_close($this->curl);
+        
+        $json = json_decode($json);
+        $articles = $json->articles;
+        $categories = $json->categories;
+
+        require('View/home.php');   
     }
 
     public function show($id)

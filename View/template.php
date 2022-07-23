@@ -31,8 +31,8 @@
                         <li><a href="/">Accueil</a></li>
                         <?php foreach ($categories as $category) { ?>
                             <li>
-                                <a href="../index.php?action=category&id=<?= htmlspecialchars($category['id']);?>">
-                                    <?= htmlspecialchars($category['libelle']);?> 
+                                <a href="../index.php?action=category&id=<?= htmlspecialchars($category->id);?>">
+                                    <?= htmlspecialchars($category->libelle);?> 
                                 </a>
                             </li>
                         <?php  } ?>
