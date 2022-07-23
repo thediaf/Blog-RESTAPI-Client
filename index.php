@@ -15,7 +15,6 @@
             }
             elseif ($_GET['action'] == "category")
             {
-                
                 $run->categoryArticles($_GET['id']);
             }
             elseif ($_GET['action'] == "login")

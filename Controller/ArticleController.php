@@ -41,10 +41,16 @@ class ArticleController
 
     public function categoryArticles($id)
     {
-        // echo "ddklf";
-        $articles = $this->model->getArticlesByCategory($id);
-        $categories = $this->model->getCategories();
-        // var_dump($articles);
+        curl_setopt($this->curl, CURLOPT_URL, "http://localhost:8000/index.php?action=category&id=" . $id);
+        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $json = curl_exec($this->curl);
+        
+        curl_close($this->curl);
+        
+        $json = json_decode($json);
+        $articles = $json->articles;
+        $categories = $json->categories;
         require('View/home.php');
     }
 
