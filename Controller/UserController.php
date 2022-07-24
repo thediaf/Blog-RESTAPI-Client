@@ -18,7 +18,7 @@ class UserController
     public function login()
     {
         $categories = $this->model->getCategories();
-        require('View/connexion.php'); 
+        require('View/signin.php'); 
     }
 
     public function signup()
