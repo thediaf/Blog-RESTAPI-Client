@@ -31,7 +31,7 @@ class ArticleController
     {
         if ($_POST) {
 
-            
+           
             $url = 'http://localhost:8000/index.php';
             $data = array('title' => 'test', 'content' => 'Tesr hjdhjdh djklmdjd');
             // utilisez 'http' même si vous envoyez la requête sur https:// ...
