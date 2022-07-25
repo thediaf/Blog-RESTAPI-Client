@@ -24,7 +24,7 @@
             elseif ($_GET['action'] == "login")
             {
                 
-                $userController->login();
+                $userController->signin();
             }
 
             elseif ($_GET['action'] == "signup")

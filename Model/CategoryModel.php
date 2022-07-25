@@ -17,7 +17,7 @@ class CategoryModel extends Manager
     public function getCategories()
     {
 
-        $sql = 'SELECT id, titre FROM categorie ORDER BY id DESC';
+        $sql = 'SELECT * FROM categorie ORDER BY id DESC';
         $query =  $this->connexion->query($sql);
 
         return $query->fetchAll();

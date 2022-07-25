@@ -20,6 +20,8 @@ class ArticleController
 
     public function home()
     {
+        session_start();
+
         $response = $this->request->callAPI("http://localhost:8000/index.php");
         $articles = $response->articles;
         $categories = $response->categories;
