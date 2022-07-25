@@ -31,8 +31,8 @@ class ArticleController
 
     public function new()
     {
+        session_start();
         if ($_POST) {
-
            
             $url = 'http://localhost:8000/index.php';
             $data = array('title' => 'test', 'content' => 'Tesr hjdhjdh djklmdjd');
