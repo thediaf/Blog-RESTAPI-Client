@@ -56,7 +56,39 @@ class UserController
 
     public function signup()
     {
-        $categories = $this->categoryModel->getCategories();
-        require('View/signup.php'); 
+        if ($_POST) {
+
+           
+            $url = 'http://localhost:8000/index.php?action=signup';
+            $data = array(
+                    'login' => $_POST['login'], 
+                    'firstname' => $_POST['firstname'], 
+                    'lastname' => $_POST['lastname'],
+                    'password' => $_POST['password'],
+                    'password_retype' => $_POST['password_retype']
+                    );
+            // utilisez 'http' même si vous envoyez la requête sur https:// ...
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+                    'content' => http_build_query($data)
+                )
+            );
+            $context  = stream_context_create($options);
+            $token = file_get_contents($url, false, $context);
+            $token = json_decode($token);
+
+            if ($token) {
+                session_start();
+                $_SESSION["loggedIn"] = true;
+            }
+            
+            (new ArticleController())->home();
+            
+        }
+        else {
+            require('View/signup.php');
+        }
     }
 }

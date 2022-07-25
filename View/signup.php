@@ -1,111 +1,36 @@
-<!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="author" content="NoS1gnal"/>
+<?php ob_start(); ?> 
 
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-            <title>Inscription</title>
-        </head>
-        <body>
-        <div class="login-form">
-            <?php 
-                if(isset($_GET['reg_err']))
-                {
-                    $err = htmlspecialchars($_GET['reg_err']);
-
-                    switch($err)
-                    {
-                        case 'success':
-                        ?>
-                            <div class="alert alert-success">
-                                <strong>Succès</strong> inscription réussie !
-                            </div>
-                        <?php
-                        break;
-
-                        case 'password':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> mot de passe différent
-                            </div>
-                        <?php
-                        break;
-
-                        case 'email':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email non valide
-                            </div>
-                        <?php
-                        break;
-
-                        case 'email_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email trop long
-                            </div>
-                        <?php 
-                        break;
-
-                        case 'pseudo_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> pseudo trop long
-                            </div>
-                        <?php 
-                        case 'already':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> compte deja existant
-                            </div>
-                        <?php 
-
-                    }
-                }
-                ?>
-            
-            <form action="inscription_traitement.php" method="post">
-                <h2 class="text-center">Inscription</h2>       
-                <div class="form-group">
-                    <input type="text" name="login" class="form-control" placeholder="login" required="required" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Mot de passe" required="required" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Inscription</button>
-                </div>   
-            </form>
-            <p class="text-center"><a href="../index.php?action=login">Connexion</a></p>
+<div class="mx-auto my-6 p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <form class="space-y-6" action="../index.php?action=signup" method="post">
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Inscription</h5>
+        <div>
+            <label for="login" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Login</label>
+            <input type="text" name="login" id="login" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 w-full h-10"  required="">
         </div>
-        <style>
-            .login-form {
-                width: 340px;
-                margin: 50px auto;
-            }
-            .login-form form {
-                margin-bottom: 15px;
-                background: #f7f7f7;
-                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-                padding: 30px;
-            }
-            .login-form h2 {
-                margin: 0 0 15px;
-            }
-            .form-control, .btn {
-                min-height: 38px;
-                border-radius: 2px;
-            }
-            .btn {        
-                font-size: 15px;
-                font-weight: bold;
-            }
-        </style>
-        </body>
-</html>
+        <div>
+            <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Prenom</label>
+            <input type="text" name="firstname" id="firstname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 w-full h-10"  required="">
+        </div>
+        <div>
+            <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nom</label>
+            <input type="text" name="lastname" id="lastname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 w-full h-10"  required="">
+        </div>
+        <div>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mot de passe</label>
+            <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 w-full h-10" required="">
+        </div>
+        <div>
+            <label for="password_retype" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Re-tapez le mot de passe</label>
+            <input type="password" name="password_retype" id="password_retype" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 w-full h-10" required="">
+        </div>
+        <button type="submit" class="w-full h-10 text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            S'inscrire
+        </button>
+        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+            Vous avez un compte? <a href="../index.php?action=login" class="text-blue-700 hover:underline dark:text-blue-500">Connectez-vous</a>
+        </div>
+    </form>
+</div>
+     
+<?php $content = ob_get_clean(); ?>
+<?php require('View/template.php'); ?>
