@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Model\ArticleModel;
 use App\Model\CategoryModel;
 use App\Model\UserModel;
+use App\Controller\ArticleController;
 
 require_once('Model/UserModel.php');
 require_once('Model/CategoryModel.php');
@@ -90,5 +91,13 @@ class UserController
         else {
             require('View/signup.php');
         }
+    }
+
+    public function logout()
+    {
+        session_start(); // demarrage de la session
+        session_destroy(); // on détruit la/les session(s), soit si vous utilisez une autre session, utilisez de préférence le unset()
+        (new ArticleController())->home();
+         die();
     }
 }

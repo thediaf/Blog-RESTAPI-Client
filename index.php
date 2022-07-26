@@ -26,11 +26,15 @@
                 
                 $userController->signin();
             }
-
             elseif ($_GET['action'] == "signup")
             {
                 
                 $userController->signup();
+            }
+            elseif ($_GET['action'] == "logout")
+            {
+                
+                $userController->logout();
             }
         }
         else
