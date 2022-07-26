@@ -17,6 +17,11 @@
             {
                 $run->categoryArticles($_GET['id']);
             }
+            elseif ($_GET['action'] == "users")
+            {
+                
+                $userController->users();
+            }
             elseif ($_GET['action'] == "new")
             {
                 $run->new();

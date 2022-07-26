@@ -5,10 +5,12 @@ use App\Model\ArticleModel;
 use App\Model\CategoryModel;
 use App\Model\UserModel;
 use App\Controller\ArticleController;
+use App\Controller\ApiController;
 
 require_once('Model/UserModel.php');
 require_once('Model/CategoryModel.php');
 require_once('Controller/ArticleController.php');
+require_once('Controller/ApiController.php');
 
 
 class UserController 
@@ -18,8 +20,21 @@ class UserController
 
     public function __construct()
     {
+        $this->request = new ApiController();
         $this->model = new UserModel();   
         $this->categoryModel    =   new CategoryModel();
+    }
+
+    public function users()
+    {
+        session_start();
+
+        $response = $this->request->callAPI("http://localhost:8000/index.php?action=users");
+        // var_dump($response);
+        $users = $response->users;
+        $categories = $response->categories;
+
+        require('View/users.php');  
     }
 
     public function signin()
