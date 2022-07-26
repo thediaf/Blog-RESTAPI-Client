@@ -1,6 +1,7 @@
 <?php ob_start() ?> 
     <div class="grid grid-cols-3 gap-3 w-auto mx-auto">
 <?php  foreach ($articles as $article) {  ?> 
+    
     <a href="../index.php?action=show&id=<?= htmlspecialchars($article->id);?>" 
             class="block p-6 m-6 max-w-sm bg-white rounded-lg border border-gray-200 
             shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"

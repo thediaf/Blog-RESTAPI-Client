@@ -71,6 +71,7 @@
                             Gestion des utilisateurs
                         </a>
                         <a href="../index.php?action=logout" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Se deconnecter</a>
+                        
                     <?php } else { ?>
                         
                         <a href="../index.php?action=login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Connexion</a>

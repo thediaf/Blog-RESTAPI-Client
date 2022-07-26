@@ -35,7 +35,11 @@ class ArticleController
         if ($_POST) {
            
             $url = 'http://localhost:8000/index.php';
-            $data = array('title' => 'test', 'content' => 'Tesr hjdhjdh djklmdjd');
+            $data = array(
+                        'title' => $_POST['title'], 
+                        'content' => $_POST['content'],
+                        'category' =>  $_POST['category']
+                    );
             // utilisez 'http' même si vous envoyez la requête sur https:// ...
             $options = array(
             'http' => array(
